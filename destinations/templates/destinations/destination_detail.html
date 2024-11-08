@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main1.css' %}">
+    <title>{{ destination.place_name }}</title>
+</head>
+<body>
+    <h1>{{ destination.place_name }}</h1>
+    <p>{{ destination.description }}</p>
+    <p>Weather: {{ destination.weather }}</p>
+    <p>Location: {{ destination.location_district }}, {{ destination.location_state }}</p>
+    <a href="{{ destination.google_map_link }}">View on Google Maps</a><br>
+
+    <!-- Display the image if it exists -->
+    {% if destination.image %}
+        <img src="{{ destination.image.url }}" alt="Image of {{ destination.place_name }}">
+    {% else %}
+        <p>No image available.</p>
+    {% endif %}
+    <br><br>
+    <!-- Edit and Delete Links -->
+    <a href="{% url 'destination-edit' pk=destination.id %}">Edit</a><br>
+    <a href="{% url 'destination-delete' pk=destination.id %}">Delete</a>
+    
+    
+</body>
+</html>

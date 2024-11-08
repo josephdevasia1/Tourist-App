@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main1.css' %}">
+    <title>{% block title %}Create or Edit Destination{% endblock %}</title>
+</head>
+<body>
+    <h1>{% block header %}Create Destination{% endblock %}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% block button_text %}Save{% endblock %}</button>
+    </form>
+
+    <a href="{% url 'destination-list' %}">Back to Destinations</a>
+</body>
+</html>
